@@ -1,0 +1,265 @@
+*{
+	margin: 0;
+	padding: 0;
+	box-sizing: border-box;
+}
+
+html,
+body {
+    width: 100%;
+    height: 100%;
+}
+
+body {
+    font-family: Arial, sans-serif;
+}
+
+
+/* =========================
+   CONTAINER
+   ========================= */
+
+#container {
+    min-height: 100vh;
+    display: grid;
+
+    /* 2 kolom */
+    grid-template-columns: 220px 1fr;
+
+    /* 3 baris */
+    grid-template-rows: 70px 1fr 50px;
+
+    grid-template-areas:
+        "sidebar header"
+        "sidebar main"
+        "sidebar footer";
+
+    transition: grid-template-columns 0.5s ease;
+}
+
+/* =========================
+   SIDEBAR
+   ========================= */
+
+#sidebar {
+    grid-area: sidebar;
+    background: #333;
+    color: white;
+    padding: 20px;
+}
+
+/* HEADER SIDEBAR */
+
+.sidebar-header {
+    display: flex;
+    align-items: center;
+    justify-content: space-between;
+    /*gap: 12px;*/
+    margin-bottom: 20px;
+}
+
+
+/* BURGER */
+
+#burger-menu {
+    width: 40px;
+    height: 40px;
+
+    border: none;
+
+    background: transparent;
+    color: white;
+
+    font-size: 20px;
+
+    cursor: pointer;
+}
+
+/* =========================
+   SIDEBAR MENU
+   ========================= */
+
+#sidebar h2 {
+    margin-bottom: 20px;
+}
+
+
+#sidebar nav {
+    display: flex;
+    flex-direction: column;
+    gap: 8px;
+}
+
+
+.menu-item {
+    display: flex;
+    align-items: center;
+    gap: 12px;
+    padding: 12px;
+    color: white;
+    text-decoration: none;
+    border-radius: 8px;
+}
+
+
+.menu-item:hover {
+    background: #555;
+}
+
+
+.menu-item i {
+    width: 20px;
+    text-align: center;
+}
+
+#container.sidebar-collapsed {
+    grid-template-columns: 70px 1fr;
+}
+
+#container.sidebar-collapsed .sidebar-title {
+    display: none;
+}
+
+
+#container.sidebar-collapsed .menu-item span {
+    display: none;
+}
+
+#container.sidebar-collapsed .menu-item {
+    justify-content: center;
+}
+
+
+#container.sidebar-collapsed .sidebar-header {
+    justify-content: center;
+}
+
+
+/* =========================
+   HEADER
+   ========================= */
+
+header {
+    grid-area: header;
+    background: #eee;
+    padding: 20px;
+}
+
+
+/* =========================
+   MAIN
+   ========================= */
+
+main {
+    grid-area: main;
+    padding: 20px;
+    background: white;
+    /* Jika isi main terlalu panjang */
+    overflow: auto;
+}
+
+
+/* =========================
+   FOOTER
+   ========================= */
+
+footer {
+    grid-area: footer;
+    background: #eee;
+    padding: 15px;
+}
+
+
+/* =========================
+   BOTTOM NAV
+   ========================= */
+
+/* Tidak digunakan pada desktop */
+
+#bottom-nav {
+    display: none;
+}
+
+.page {
+    display: none;
+}
+
+.page.active {
+    display: block;
+}
+
+
+/* ====================================================================
+    								MOBILE
+   ================================================================== */
+
+@media (max-width: 768px) {
+
+    #container {
+        /* Hanya satu kolom */
+        grid-template-columns: 1fr;
+
+        /* Header, main, bottom-nav */
+        grid-template-rows:
+            60px
+            1fr
+            60px;
+
+        grid-template-areas:
+            "header"
+            "main"
+            "bottom-nav";
+    }
+
+
+    /* Sidebar disembunyikan */
+    #sidebar {
+        display: none;
+    }
+
+
+    /* Footer disembunyikan */
+    footer {
+        display: none;
+    }
+
+
+    /* Header */
+    header {
+        padding: 15px;
+    }
+
+
+    /* Main */
+    main {
+        padding: 15px;
+        overflow: auto;
+    }
+
+
+    /* Bottom navigation */
+    #bottom-nav {
+        grid-area: bottom-nav;
+        display: flex;
+        align-items: center;
+        justify-content: space-evenly;
+        background: #333;
+        color: white;
+        padding: 10px;
+    }
+
+    .bottom-item {
+        display: flex;
+        flex-direction: column;
+        align-items: center;
+        gap: 4px;
+        color: white;
+        text-decoration: none;
+        font-size: 12px;
+    }
+
+
+    .bottom-item i {
+        font-size: 20px;
+    }
+}
